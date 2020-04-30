@@ -12,9 +12,9 @@ cd dist
 # if you are deploying to a custom domain
 # echo 'www.example.com' > CNAME
 
-git add dist
+git init
+git add -A
 git commit -m 'test deploiement sur https://dwizn.github.io/M2_Projet_VueJS/ '
-git subtree push --prefix dist origin gh-pages
 
 # if you are deploying to https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
