@@ -35,7 +35,7 @@
                     name: this.form.name,
                     description: this.form.description,
                     enseigne: this.form.enseigne,
-                    dateCreation: date.getDate(),
+                    dateCreation: date.getTime(),
                     items: []
                 }
                 let listes = JSON.parse(localStorage.getItem('listes')) || []

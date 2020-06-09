@@ -8,6 +8,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/fr'
 
 Vue.use(ElementUI, { locale })
+Vue.use(require('vue-moment'))
 
 Vue.config.productionTip = false
 

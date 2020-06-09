@@ -3,7 +3,7 @@
         <center>
             <h1 class="py-4">Liste des courses</h1>
             <router-link to="/new">
-                <el-button class="my-3" type="warning" plain>
+                <el-button class="my-3" type="info" plain>
                     Ajouter une liste
                 </el-button>
             </router-link>
@@ -21,13 +21,23 @@
         components: {
             Liste
         },
-        data: () => ({
-            listes: []
-        }),
+        data() {
+            return {
+                listes: []
+            }
+        },
         mounted() {
             this.listes = JSON.parse(localStorage.getItem('listes')) || []
         },
         methods: {
+            openList(listId) {
+                this.$router.push({
+                    name: 'list',
+                    params: {
+                        id: listId
+                    }
+                })
+            },
             removeFromList(id) {
                 const index = this.listes.findIndex(list => list.id === id)
                 this.listes.splice(index, 1)

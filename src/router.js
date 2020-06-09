@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from './components/HomePage.vue'
 import Listing from './components/Listing.vue'
 import AddListe from './components/AddListe.vue'
+import DetailList from './components/DetailListe.vue'
+import AddItem from './components/AddItem.vue'
 
 
 Vue.use(Router)
@@ -23,6 +25,18 @@ export default new Router({
       path: '/new',
       name: 'new',
       component: AddListe
+    },
+    {
+      path: '/list/:id',
+      name: 'list',
+      component: DetailList,
+      props: true
+    },
+    {
+      path: '/list/:id/add',
+      name: 'addItem',
+      component: AddItem,
+      props: true
     }
   ]
 })
