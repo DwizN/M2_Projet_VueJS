@@ -7,11 +7,11 @@
                     <el-option v-for="(item, index) in enseignes" :key="index" :label="item" :value="item">
                     </el-option>
                 </el-select>
-                <el-input type="text" class="mb-3" placeholder="Please input" v-model="form.name" maxlength="20"
+                <el-input required type="text" class="mb-3" placeholder="Entrez le nom de la liste" v-model="form.name" maxlength="20"
                     show-word-limit><template slot="prepend">Nom :</template></el-input>
-                <el-input type="text" placeholder="Please input" v-model="form.description" maxlength="50"
+                <el-input type="text" placeholder="Entrez une description" v-model="form.description" maxlength="50"
                     show-word-limit><template slot="prepend">Description :</template></el-input>
-                    <el-button type="warning" @click="addListe">Ajouter</el-button>
+                    <el-button class="w-100 mt-3" type="warning" @click="addListe">Ajouter</el-button>
             </div>
         </div>
     </div>
@@ -38,10 +38,10 @@
                     dateCreation: date.getTime(),
                     items: []
                 }
-                let listes = JSON.parse(localStorage.getItem('listes')) || []
-                listes.push(newList)
-                localStorage.setItem('listes', JSON.stringify(listes))
-                this.$router.push({ name: 'listing'});
+                if(this.form.name !== ''){
+                    this.$store.commit('ADD_LIST', newList)
+                    this.$router.push({ name: 'listing'});
+                }
             }
         },
     }

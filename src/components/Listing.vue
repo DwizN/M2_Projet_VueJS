@@ -16,18 +16,16 @@
 
 <script>
     import Liste from './Liste.vue'
+    import { mapGetters } from 'vuex'
     export default {
         name: 'Listing',
         components: {
             Liste
         },
-        data() {
-            return {
-                listes: []
-            }
-        },
-        mounted() {
-            this.listes = JSON.parse(localStorage.getItem('listes')) || []
+        computed: {
+            ...mapGetters([
+                'listes'
+            ])
         },
         methods: {
             openList(listId) {
@@ -39,16 +37,7 @@
                 })
             },
             removeFromList(id) {
-                const index = this.listes.findIndex(list => list.id === id)
-                this.listes.splice(index, 1)
-            }
-        },
-        watch: {
-            listes: {
-                handler() {
-                    localStorage.setItem('listes', JSON.stringify(this.listes))
-                },
-                deep: true
+                this.$store.commit('REMOVE_LIST', id)
             }
         }
     }
