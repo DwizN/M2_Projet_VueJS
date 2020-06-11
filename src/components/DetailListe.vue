@@ -11,7 +11,7 @@
         <h3><i class="el-icon-warning"></i> Aucun élément dans la liste</h3>
       </div>
       <div v-else>
-        <div class="card my-1 m-auto" v-for="(item, index) in liste.items" :key="index">
+        <div class="card my-2" v-for="(item, index) in liste.items" :key="index">
           <div class="card-body py-0 pr-0">
             <div class="row">
               <div class="col-2 align-center">
@@ -22,12 +22,17 @@
               </div>
               <div @click="removeItem(item.id)" class="col-2 align-center text-center"
                 style="background-color:#F56C6C;cursor:pointer;">
-                <i style="font-size:1em; color:white;" class="py-1 el-icon-delete"></i>
+                <i style="font-size:1em; color:white;" class="py-2 el-icon-delete"></i>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-12 text-center">
+             <router-link to="/listing">Retour</router-link>
+             </div>
+         </div>
     </div>
   </div>
 </template>

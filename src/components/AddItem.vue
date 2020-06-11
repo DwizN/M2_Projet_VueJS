@@ -1,11 +1,15 @@
 <template>
-    <div class="w-50 m-auto">
-        <h1 class="text-center py-2">Ajouter un article à la liste {{liste.name}}</h1>
-        <el-input type="text" class="mb-3" placeholder="Please input" v-model="form.name" maxlength="20"
+    <div>
+        <h1 class="text-center py-2">Ajouter un article à la liste <b> <br>{{liste.name}}</b></h1>
+        <div class="row" style="max-width:600px; margin-left:auto; margin-right:auto;">
+            <div class="col-12">
+        <el-input type="text" class="mb-3" placeholder="Entrez un nom" v-model="form.name" maxlength="20"
                     show-word-limit><template slot="prepend">Nom :</template></el-input>
-        <el-input type="number" class="mb-3" placeholder="Entrez une q" v-model="form.quantite" max="20" min="0"
+        <el-input type="number" class="mb-3" placeholder="Entrez une quantité" v-model="form.quantite" maxlength="3" max="999" min="0"
                     show-word-limit><template slot="prepend">Quantité :</template></el-input>
         <el-button class="w-100" type="warning" @click="addItem">Ajouter</el-button>
+        </div>
+        </div>
         </div>
 </template>
 

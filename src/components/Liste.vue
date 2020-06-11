@@ -12,11 +12,25 @@
                     <p class="card-text">{{item.description}}</p>
                     <div class="row">
                         <div class="col-8 col-md-6">
-                            <i class="el-icon-shopping-cart-2"></i> {{item.items.length}} article(s)
+                            <i class="el-icon-shopping-cart-2"></i>
+                            <!-- Pour le fun, un tooltip pour voir les items de la liste au survol -->
+                            <el-tooltip placement="right-end">
+                                <div slot="content">
+                                    <ul class="pl-2 pb-0" v-for="(itemListe, index) in item.items" :key="index"
+                                        style="margin-bottom:0px!important;">
+                                        <li>
+                                            <span class="pr-3">{{itemListe.quantite}}x</span>
+                                            <span>{{itemListe.name}}</span>
+                                        </li>
+                                    </ul>
+                                    <span v-if="item.items.length ===0">Aucun produit dans ce panier</span>
+                                </div>
+                                <span @click="openList(item.id)" class="articles pl-1">{{item.items.length}} article(s)</span>
+                            </el-tooltip>
                         </div>
                         <div class="col-4 col-md-6 text-right px-0" style="color: #6c757d">
                             <p class="card-text"><small
-                                    class="text-muted">{{item.dateCreation | moment('DD/MM/YYYY hh:mm')}}</small></p>
+                                    class="text-muted">{{item.dateCreation | moment('DD/MM/YY hh:mm')}}</small></p>
                         </div>
                     </div>
                 </div>
@@ -62,5 +76,10 @@
 
     .container:hover {
         opacity: 0.7
+    }
+
+    .articles {
+        cursor: pointer;
+        text-decoration: underline;
     }
 </style>
