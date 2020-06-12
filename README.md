@@ -11,6 +11,7 @@ Ce projet fait suite au cours de Framework Front. Il a pour but de faire une pet
 Toutes les fonctionnalités demandées de base ont été implémentées.
 Quelques ajouts et fonctionnalités ont cependant été faits : 
 * store modifié avec vuex (voir commits pour la version avec le localstorage)
+* affichage des images dynamiques dans les listes.
 * possibilité de supprimer une liste.
 * ajout d'un tooltip pour pouvoir voir au survol de la liste les différents articles contenus sans ouvrir le composant associé
 * ajout du prix des articles, et comptabilisation des sommes dans la liste.
