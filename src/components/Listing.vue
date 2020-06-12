@@ -8,15 +8,20 @@
                 </el-button>
             </router-link>
         </center>
-        <div v-for="(item, index) in listes" :key="index" class="row-liste">
-            <Liste :item="item" />
+        <div class="listing">
+            <h3 class="text-center" v-if="listes.length === 0"><i class="el-icon-warning"></i> Aucune liste créée</h3>
+            <div v-for="(item, index) in listes" :key="index" class="row-liste">
+                <Liste :item="item" />
+            </div>
         </div>
     </div>
 </template>
 
 <script>
     import Liste from './Liste.vue'
-    import { mapGetters } from 'vuex'
+    import {
+        mapGetters
+    } from 'vuex'
     export default {
         name: 'Listing',
         components: {
@@ -26,19 +31,11 @@
             ...mapGetters([
                 'listes'
             ])
-        },
-        methods: {
-            openList(listId) {
-                this.$router.push({
-                    name: 'list',
-                    params: {
-                        id: listId
-                    }
-                })
-            },
-            removeFromList(id) {
-                this.$store.commit('REMOVE_LIST', id)
-            }
         }
     }
 </script>
+<style scoped>
+.listing {
+    margin-bottom: 80px;
+}
+</style>

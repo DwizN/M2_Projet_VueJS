@@ -1,5 +1,5 @@
 <template>
-  <div class=" w-50 m-auto">
+  <div style="max-width: 540px; margin-left: auto; margin-right:auto">
     <div v-if="liste.length !== 0">
       <h1 class="text-center">{{liste.name}}</h1>
       <div class="w-100 text-center">
@@ -17,12 +17,15 @@
               <div class="col-2 align-center">
                 {{item.quantite}}x
               </div>
-              <div class="col-8 text-left">
-                <label class="pb-0">{{item.name}}</label>
+              <div class="col-6 text-left">
+                {{item.name}}
+              </div>
+              <div class="col-2 text-right pl-0">
+                {{item.prix}}€
               </div>
               <div @click="removeItem(item.id)" class="col-2 align-center text-center"
                 style="background-color:#F56C6C;cursor:pointer;">
-                <i style="font-size:1em; color:white;" class="py-2 el-icon-delete"></i>
+                <i style="font-size:0.8em; color:white;" class="pt-1 el-icon-delete"></i>
               </div>
             </div>
           </div>

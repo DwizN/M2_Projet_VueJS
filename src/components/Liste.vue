@@ -11,7 +11,7 @@
                     <h5 class="card-title">{{item.name}}</h5>
                     <p class="card-text">{{item.description}}</p>
                     <div class="row">
-                        <div class="col-8 col-md-6">
+                        <div class="col-10 pr-0">
                             <i class="el-icon-shopping-cart-2"></i>
                             <!-- Pour le fun, un tooltip pour voir les items de la liste au survol -->
                             <el-tooltip placement="right-end">
@@ -20,17 +20,20 @@
                                         style="margin-bottom:0px!important;">
                                         <li>
                                             <span class="pr-3">{{itemListe.quantite}}x</span>
-                                            <span>{{itemListe.name}}</span>
+                                            <span class="pr-3">{{itemListe.name}}</span>
+                                            <span> {{ itemListe.prix}}€ </span>
                                         </li>
                                     </ul>
                                     <span v-if="item.items.length ===0">Aucun produit dans ce panier</span>
                                 </div>
-                                <span @click="openList(item.id)" class="articles pl-1">{{item.items.length}} article(s)</span>
+                                <span @click="openList(item.id)" class="articles pl-1">{{item.items.length}}
+                                    article(s)</span>
                             </el-tooltip>
+                            <span class="pl-1">- {{getPrice}}€</span>
                         </div>
-                        <div class="col-4 col-md-6 text-right px-0" style="color: #6c757d">
+                        <div class="col-2 text-right px-0" style="color: #6c757d">
                             <p class="card-text"><small
-                                    class="text-muted">{{item.dateCreation | moment('DD/MM/YY hh:mm')}}</small></p>
+                                    class="text-muted">{{item.dateCreation | moment('hh:mm')}}</small></p>
                         </div>
                     </div>
                 </div>
@@ -52,15 +55,28 @@
     export default {
         name: 'Liste',
         props: ['item'],
-        data: () => ({
 
-        }),
+        computed: {
+            getPrice() {
+                if (this.item.items.length === 0) {
+                    return 0
+                } else {
+                    return parseFloat(this.item.items.reduce((acc, current) => (acc += parseFloat(current.prix)), 0)
+                        .toFixed(2))
+                }
+            }
+        },
         methods: {
             removeFromList(id) {
-                this.$parent.removeFromList(id)
+                this.$store.commit('REMOVE_LIST', id)
             },
             openList(id) {
-                this.$parent.openList(id)
+                this.$router.push({
+                    name: 'list',
+                    params: {
+                        id: id
+                    }
+                })
             }
         }
     }
